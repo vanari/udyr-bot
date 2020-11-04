@@ -4,40 +4,39 @@ const fs = require("fs");
 
 const prefix = '/';
 
+client.commands = new Discord.Collection();
+const commandFiles = fs.readdirSync("./commands/").filter((file) => file.endsWith(".js"));
+
+for (const file of commandFiles){
+    const command = require(`./commands/${file}`);
+    client.commands.set(command.name, command);
+}
+
 client.once("ready", () => {
     console.log("Udyr is online!");
 });
 
 
-client.on("message", message => {
+client.on("message", (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
     if (command == "stepan" || command == "štěpán"){
-        message.channel.send("More like Špekán! xDDDDDD");
+        client.commands.get("stepan").execute(message, args);
     }
 
     if (command == "cock"){
-        message.channel.send("cock and balls");
+        client.commands.get("cock").execute(message, args);
     }
 
     if (command == "cbt"){
-        message.channel.send(message.author.username + ", it is time for your cock flattening session!");
+        client.commands.get("cbt").execute(message, args);
     }
 
     if (command == "code"){
-        fs.readFile("./app.js", "utf-8", (err, data) => {
-            if (err) {
-                message.channel.send("unexpected error occurred")
-                return console.log(err);
-            }
-
-            const q = String.fromCharCode(0x60);
-
-            message.channel.send(q + q + q + data + q + q + q);
-        });
+        client.commands.get("code").execute(message, args);
     }
 });
 
