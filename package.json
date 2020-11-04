@@ -1,0 +1,27 @@
+{
+  "name": "udyr_bot",
+  "version": "1.0.0",
+  "description": "A simple discord bot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanari/udyr-bot.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "udyr"
+  ],
+  "author": "Richard Váňa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vanari/udyr-bot/issues"
+  },
+  "homepage": "https://github.com/vanari/udyr-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.4.1"
+  }
+}
