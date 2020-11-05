@@ -38,6 +38,24 @@ client.on("message", (message) => {
     if (command == "code"){
         client.commands.get("code").execute(message, args);
     }
+
+    if (command == "vyplata"){
+        client.commands.get("vyplata").execute(message, args);
+    }
+
+    if (command == "join"){
+        client.commands.get("join").execute(message, args);
+    } 
+
+    if (command == "leave"){
+        client.commands.get("leave").execute(message, args);
+    } 
+
+    if (command == "help"){
+        for (const com of client.commands){
+            message.channel.send(com[1].name + "  -  " + com[1].description);
+        }
+    }
 });
 
 fs.readFile("./token.cbt", "utf-8", (err, data) => {
@@ -47,3 +65,10 @@ fs.readFile("./token.cbt", "utf-8", (err, data) => {
 
     client.login(data);
 });
+
+function enhance(s, n){
+    for (let i=n; i > s.length; i--){
+        s+=' ';
+    }
+    return s;
+}
